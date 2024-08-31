@@ -1,4 +1,6 @@
-import mongoose, { Schema } from "mongoose";
+const mongoose = require('mongoose');
+
+const Schema = mongoose.Schema;
 
 const newsSchema = new Schema({
     title: {
@@ -23,4 +25,6 @@ const newsSchema = new Schema({
     }
 });
 
-export const News = mongoose.model("News", newsSchema);
+const News = mongoose.model("News", newsSchema);
+
+module.exports = News;

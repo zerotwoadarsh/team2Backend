@@ -37,8 +37,8 @@ const fetchNewsData = async (query) => {
   }
 };
 
-// Example of calling the function (you can call this in a route or wherever needed)
-fetchNewsData('technology');  // Replace 'technology' with your desired query
+
+fetchNewsData('technology');  
 
 
 
