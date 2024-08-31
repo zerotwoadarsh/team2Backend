@@ -33,6 +33,9 @@ const formSchema = new Schema({
     },
     type: {
         type: String,
+    },
+    sector:{
+        type:String
     }
 });
 

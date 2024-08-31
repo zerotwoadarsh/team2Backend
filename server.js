@@ -2,7 +2,6 @@
 // Import required modules
 const express = require('express');
 const app = express();
-const port = 3000; // Port on which the server will run
 const mongoose = require('./db');
 const newsRoutes = require('./routes/news');
 
@@ -51,6 +50,6 @@ app.use('/api/news', newsRoutes);
 
 
 // Start the server
-app.listen(port, () => {
-  console.log(`Server is running on http://localhost:${port}`);
+app.listen(PORT, () => {
+  console.log(`Server is running on http://localhost:${PORT}`);
 });

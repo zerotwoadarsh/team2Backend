@@ -1,8 +1,10 @@
 {
   "dependencies": {
+    "@faker-js/faker": "^8.4.1",
     "axios": "^1.7.6",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
+    "faker": "^6.6.6",
     "mongoose": "^8.6.0"
   },
   "name": "team2backend",

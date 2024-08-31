@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 
 // MongoDB connection URI
-const dbURI = process.env.MONGO_URL;
+const dbURI = "mongodb+srv://admin:ronakraj1@cluster0.bjksk03.mongodb.net/cyberwatch?retryWrites=true&w=majority";
 
 // Options for the connection
 const options = {
