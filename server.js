@@ -5,8 +5,8 @@ const newsRoutes = require('./routes/news');
 const userPostRoutes = require('./routes/userpost');
 const formRoutes = require('./routes/formRoutes');
 const analysisRoutes = require('./routes/analysis');
+const redditPost = require('./routes/getRedditPost')
 
-const { countByType, countByLocation, countBySector } = require("./filter");
 
 const cloudinary = require("./cloudinary");
 cloudinary.cloudinaryConnect();
@@ -33,7 +33,10 @@ const fetchNewsData = async (query) => {
         max: 10
       }
     });
-    ///console.log('News Data from GNews API:', response.data);
+
+    const output = response.json;
+    console.log(output)
+    
   } catch (error) {
     console.error("Error fetching data from GNews API:", error);
   }
@@ -46,6 +49,7 @@ app.use('/api/news', newsRoutes);
 app.use('/api/userpost', userPostRoutes);
 app.use('/api/forms', formRoutes);
 app.use('/api/analysis', analysisRoutes);
+app.use('/api/getRedditPost', redditPost);
 
 
 
@@ -53,4 +57,3 @@ app.use('/api/analysis', analysisRoutes);
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });
-
