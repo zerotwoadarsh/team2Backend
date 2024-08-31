@@ -1,34 +1,26 @@
 import mongoose, { Schema } from "mongoose";
 
-const formSchema = new Schema({
-    name: {
+const newsSchema = new Schema({
+    title: {
         type: String,
         required: true
     },
-    email: {
-        type: String,
-        required: true,
-        unique: true
-    },
-    address: {
-        type: String,
-        required: true      
-    },
-    phone: {
+    source: {
         type: String,
         required: true
     },
-    location: {  
+    date: {
         type: String,
         required: true
     },
-    experience: {
+    url: {
         type: String,
         required: true
     },
-    file: {
+    description: {
         type: String,
+        required: true
     }
 });
 
-export const Form = mongoose.model("Form", formSchema);
+export const News = mongoose.model("News", newsSchema);
