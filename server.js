@@ -5,10 +5,11 @@ const app = express();
 const mongoose = require('./db');
 const newsRoutes = require('./routes/news');
 const userPostRoutes = require('./routes/userpost');
-
+const cors = require('cors');
 
 app.use(express.json());
 
+app.use(cors());
 
 const PORT = process.env.PORT || 3000;
 
