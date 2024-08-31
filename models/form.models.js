@@ -18,7 +18,7 @@ const formSchema = new Schema({
         type: String,
         required: true
     },
-    location: {  
+    location: {
         type: String,
         required: true
     },
@@ -27,6 +27,9 @@ const formSchema = new Schema({
         required: true
     },
     file: {
+        type: String,
+    },
+    type:{
         type: String,
     }
 });
