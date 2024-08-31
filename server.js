@@ -1,9 +1,10 @@
 const express = require("express");
 const app = express();
-const mongoose = require("./db");
-const newsRoutes = require("./routes/news");
-const userPostRoutes = require("./routes/userpost");
-const formRoutes = require("./routes/formRoutes");
+const mongoose = require('./Database/db');
+const newsRoutes = require('./routes/news');
+const userPostRoutes = require('./routes/userpost');
+const formRoutes = require('./routes/formRoutes');
+const analysisRoutes = require('./routes/analysis');
 
 const { countByType, countByLocation, countBySector } = require("./filter");
 
@@ -27,12 +28,12 @@ const fetchNewsData = async (query) => {
     const response = await axios.get(url, {
       params: {
         q: query,
-        token: api_key,
-        lang: "en",
-        max: 10,
-      },
+        token: api_key,  
+        lang: 'en',  
+        max: 10
+      }
     });
-    // console.log('News Data from GNews API:', response.data);
+    ///console.log('News Data from GNews API:', response.data);
   } catch (error) {
     console.error("Error fetching data from GNews API:", error);
   }
@@ -41,32 +42,15 @@ const fetchNewsData = async (query) => {
 fetchNewsData("technology");
 
 // Routes
-app.use("/api/news", newsRoutes);
-app.use("/api/userpost", userPostRoutes);
-app.use("/api/forms", formRoutes);
+app.use('/api/news', newsRoutes);
+app.use('/api/userpost', userPostRoutes);
+app.use('/api/forms', formRoutes);
+app.use('/api/analysis', analysisRoutes);
+
+
 
 // Start the server
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });
 
-// Example: Get count by type
-countByType()
-  .then((result) => {
-    console.log("Count by type:", result);
-  })
-  .catch((err) => console.error(err));
-
-// Example: Get count by location
-countByLocation()
-  .then((result) => {
-    console.log("Count by location:", result);
-  })
-  .catch((err) => console.error(err));
-
-// Example: Get count by sector
-countBySector()
-  .then((result) => {
-    console.log("Count by sector:", result);
-  })
-  .catch((err) => console.error(err));

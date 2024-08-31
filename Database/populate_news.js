@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const { faker } = require('@faker-js/faker'); // For @faker-js/faker
 
-const News = require('./models/newsPost.models.js'); // Adjust the path as needed
+const News = require('../models/newsPost.models.js'); // Adjust the path as needed
 
 // Connect to MongoDB
 mongoose.connect('mongodb+srv://admin:ronakraj1@cluster0.bjksk03.mongodb.net/cyberwatch?retryWrites=true&w=majority', {

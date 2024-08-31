@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const { faker } = require('@faker-js/faker');
 
-formSchema = require("./models/form.models.js")
+formSchema = require("../models/form.models.js")
 
 // Connect to MongoDB
 mongoose.connect('mongodb+srv://admin:ronakraj1@cluster0.bjksk03.mongodb.net/cyberwatch?retryWrites=true&w=majority', {
