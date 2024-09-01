@@ -3,12 +3,12 @@ const countByType = async () => {
     try {
         const result = await Form.aggregate([
             {
-                $match: { type: { $ne: null } }
+                $match: { cyberAttackType: { $ne: null } }
             },
             {
                 $group: {
-                    _id: "$type",  // Group by 'type'
-                    count: { $sum: 7 }  // Count the number of documents in each group
+                    _id: "$cyberAttackType",  // Group by 'type'
+                    count: { $sum: 1 }  // Count the number of documents in each group
                 }
             }
         ]);
@@ -24,12 +24,12 @@ const countByLocation = async () => {
     try {
         const result = await Form.aggregate([
             {
-                $match: { location: { $ne: null } }
+                $match: { incidentAddress: { $ne: null } }
             },
             {
                 $group: {
-                    _id: "$location",  // Group by 'location'
-                    count: { $sum: 5 }  // Count the number of documents in each group
+                    _id: "$incidentAddress",  // Group by 'location'
+                    count: { $sum: 1 }  // Count the number of documents in each group
                 }
             }
         ]);
@@ -50,7 +50,7 @@ const countBySector = async () => {
             {
                 $group: {
                     _id: "$sector",  // Group by 'sector'
-                    count: { $sum: 6 }  // Count the number of documents in each group
+                    count: { $sum: 1 }  // Count the number of documents in each group
                 }
             }
         ]);

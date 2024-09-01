@@ -1,41 +1,44 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const Schema = mongoose.Schema;
 
 const formSchema = new Schema({
-    name: {
+    fullName: {
         type: String,
-        required: true
+        required: true,
     },
     email: {
         type: String,
         required: true,
-        unique: true
+        unique: true,
     },
     address: {
         type: String,
-        required: true      
+        required: true,
     },
-    phone: {
+    phoneNumber: {
         type: String,
-        required: true
+        required: true,
     },
-    location: {
+    incidentAddress: {
         type: String,
-        required: true
+        required: true,
     },
-    experience: {
+    cyberThreatDescription: {
         type: String,
-        required: true
+        required: true,
     },
-    file: {
+    sector: {
         type: String,
     },
-    type: {
+    cyberAttackType: {
         type: String,
-    }
+    },
+    FIRLink: {
+        type: String,
+    },
 });
 
-const Form = mongoose.model("Form", formSchema);
+const Form = mongoose.model("userpost", formSchema);
 
 module.exports = Form;
