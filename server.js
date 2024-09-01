@@ -20,29 +20,67 @@ const PORT = process.env.PORT || 3000;
 
 const axios = require("axios");
 
-const api_key = "eb346b8e787875b1de821423adc7a614";
-const url = "https://gnews.io/api/v4/search";
+const { MongoClient } = require('mongodb');
+
+const api_key = 'your_api_key';
+const url = 'https://gnews.io/api/v4/search';
+
+const mongoUri = 'mongodb://localhost:27017';
+const dbName = 'cyberwatch';
+const collectionName = 'news';
+
+const client = new MongoClient(mongoUri, { useNewUrlParser: true, useUnifiedTopology: true });
 
 const fetchNewsData = async (query) => {
   try {
     const response = await axios.get(url, {
       params: {
         q: query,
-        token: api_key,  
-        lang: 'en',  
+        token: api_key,
+        lang: 'en',
         max: 10
       }
     });
 
-    const output = response.json;
-    console.log(output)
-    
+    const articles = response.data.articles;
+
+    if (!client.isConnected()) {
+      await client.connect();
+    }
+
+    const db = client.db(dbName);
+    const collection = db.collection(collectionName);
+
+    for (const article of articles) {
+      const existingArticle = await collection.findOne({ url: article.url });
+
+      if (!existingArticle) {
+        await collection.insertOne(article);
+        console.log(`Saved article: ${article.title}`);
+      } else {
+        console.log(`Duplicate article found: ${article.title}`);
+      }
+    }
+
   } catch (error) {
     console.error("Error fetching data from GNews API:", error);
   }
 };
 
-fetchNewsData("technology");
+// Schedule the task to run every hour (3600000 ms = 1 hour)
+const intervalTime = 3600000;
+
+setInterval(() => {
+  fetchNewsData("cyber crime OR cyber threat OR cyber security");
+  console.log('Fetching new data...');
+}, intervalTime);
+
+process.on('SIGINT', async () => {
+  await client.close();
+  console.log("MongoDB connection closed.");
+  process.exit(0);
+});
+
 
 // Routes
 app.use('/api/news', newsRoutes);
