@@ -34,6 +34,6 @@ const redditPostSchema = new Schema({
     },
 });
 
-const RedditPost = mongoose.model('RedditPost', redditPostSchema);
+const RedditPost = mongoose.model('Reddit_Post', redditPostSchema);
 
 module.exports = RedditPost;

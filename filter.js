@@ -7,7 +7,7 @@ const countByType = async () => {
             {
                 $group: {
                     _id: "$type",  // Group by 'type'
-                    count: { $sum: 1 }  // Count the number of documents in each group
+                    count: { $sum: 7 }  // Count the number of documents in each group
                 }
             }
         ]);
@@ -25,7 +25,7 @@ const countByLocation = async () => {
             {
                 $group: {
                     _id: "$location",  // Group by 'location'
-                    count: { $sum: 1 }  // Count the number of documents in each group
+                    count: { $sum: 5 }  // Count the number of documents in each group
                 }
             }
         ]);
@@ -43,7 +43,7 @@ const countBySector = async () => {
             {
                 $group: {
                     _id: "$sector",  // Group by 'sector'
-                    count: { $sum: 1 }  // Count the number of documents in each group
+                    count: { $sum: 6 }  // Count the number of documents in each group
                 }
             }
         ]);
