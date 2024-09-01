@@ -1,16 +1,18 @@
 const Form = require('./models/form.models');
-
-// Function to get the count of cases for each distinct type
 const countByType = async () => {
     try {
         const result = await Form.aggregate([
             {
+                $match: { type: { $ne: null } }
+            },
+            {
                 $group: {
-                    _id: "$type",  // Group by 'type'
-                    count: { $sum: 1 }  // Count the number of documents in each group
+                    _id: "$type",
+                    count: { $sum: 1 }
                 }
             }
         ]);
+        console.log(result);  // For debugging
         return result;
     } catch (err) {
         console.error('Error counting by type:', err);
@@ -18,17 +20,20 @@ const countByType = async () => {
     }
 };
 
-// Function to get the count of cases for each distinct location (city)
 const countByLocation = async () => {
     try {
         const result = await Form.aggregate([
             {
+                $match: { location: { $ne: null } }
+            },
+            {
                 $group: {
-                    _id: "$location",  // Group by 'location'
-                    count: { $sum: 1 }  // Count the number of documents in each group
+                    _id: "$location",
+                    count: { $sum: 1 }
                 }
             }
         ]);
+        console.log(result);  // For debugging
         return result;
     } catch (err) {
         console.error('Error counting by location:', err);
@@ -36,23 +41,27 @@ const countByLocation = async () => {
     }
 };
 
-// Function to get the count of cases for each distinct sector
 const countBySector = async () => {
     try {
         const result = await Form.aggregate([
             {
+                $match: { sector: { $ne: null } }
+            },
+            {
                 $group: {
-                    _id: "$sector",  // Group by 'sector'
-                    count: { $sum: 1 }  // Count the number of documents in each group
+                    _id: "$sector",
+                    count: { $sum: 1 }
                 }
             }
         ]);
+        console.log(result);  // For debugging
         return result;
     } catch (err) {
         console.error('Error counting by sector:', err);
         throw err;
     }
 };
+
 
 module.exports = {
     countByType,
